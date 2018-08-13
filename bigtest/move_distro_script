@@ -1,0 +1,8 @@
+#!/bin/bash
+
+scp /home/jenkins/big_test/cool_program.zip jenkins@10.0.10.11:/home/jenkins/
+ssh jenkins@10.0.10.11 << __EOF__
+   mkdir /home/jenkins/cool_python_program
+   unzip -o /home/jenkins/cool_program.zip -d /home/jenkins/cool_python_program/
+   python cool_python_program/main.py
+__EOF__

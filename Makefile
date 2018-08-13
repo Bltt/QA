@@ -1,13 +1,13 @@
 .PHONY= add commit push
 message = "adding some things my friends"
-file = "test_file"
+file = "."
 branch = "master"
 
 add: 
 	@git add ${file}
 
 commit: add
-	@git commit -m "${message}"
+	@git commit -m '${message}'
 
 push: commit
 	@git push origin "${branch}"

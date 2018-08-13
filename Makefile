@@ -1,8 +1,15 @@
-.PHONY= add commit push ifstate
+.PHONY= add ifstate commit push checkuserisjenkins
 message = "adding some things my friends"
 file = "."
 branch = "master"
-foo = ${shell whoami}
+userna = ${shell whoami}
+
+checkuserisjenkins:
+ifeq (${userna},jenkins)
+        @echo "you are the right user!"
+else
+        ${error "You arent jenkins ya cheeky shit!"}
+endif
 
 add: 
 	@git add ${file}
@@ -29,7 +36,3 @@ ifdef var3
 else
 	@echo "define it ya lazy shit"
 endif
-
-test:
-	@echo "you are ${foo}"
-	${info "doin things"}

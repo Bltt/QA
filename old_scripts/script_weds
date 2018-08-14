@@ -1,0 +1,12 @@
+#!/bin/bash
+
+pass=$(echo -n "markisthebestatpool" | sha1sum )
+read -s -p "enter password > " check
+checkhash=$(echo -n "${check}" | sha1sum)
+
+if [[ ${checkhash} = ${pass} ]]
+then
+	echo "You got the password! Mark is the best at pool!"
+else
+	echo "you suck! you must be really bad at pool."
+fi

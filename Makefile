@@ -1,38 +1,23 @@
-.PHONY= add ifstate commit push checkuserisjenkins
-message = "adding some things my friends"
-file = "."
-branch = "master"
-userna = ${shell whoami}
+.PHONY = makedistro
 
-checkuserisjenkins:
-ifeq (${userna},jenkins)
-        @echo "you are the right user!"
-else
-	${error "You arent jenkins ya cheeky shit!"}
-endif
+makedistro:
+	@zip /home/jenkins/git/QA/bigtest/cool_program -r .
 
-add: 
-	@git add ${file}
+movedistrotoserver: makedistro 
+	@scp /home/jenkins/git/QA/bigtest/cool_program.zip jenkins@10.0.10.11:/home/jenkins/
 
-commit: add
-	@git commit -m '${message}'
+unziponserver : movedistrotoserver
+	@ssh jenkins@10.0.10.11 'mkdir /home/jenkins/cool_python_program ; \
+        unzip -o /home/jenkins/cool_program.zip -d /home/jenkins/cool_python_program/'
 
-push: commit
-	@git push origin "${branch}"
+runonserver: unziponserver
+	@ssh jenkins@10.0.10.11 'cd /home/jenkins/cool_python_program/ ; \
+	make runpython'
 
+removefromserver:
+	@ssh jenkins@10.0.10.11 'rm -r /home/jenkins/cool_python_program/ ; \
+	rm /home/jenkins/cool_program.zip'
+	rm cool_program.zip
 
-ifstate:
-ifeq (${var1},${var2})
-	@echo "yeet"
-else
-	@echo "you suck"
-endif
-	@echo ${var1}
-	@echo ${var2}
-
-ifdefstate:
-ifdef var3
-	@echo "aboslute lad"
-else
-	@echo "define it ya lazy shit"
-endif
+runpython:
+	python main.py

@@ -12,16 +12,16 @@ while True:
 	print("")
 	print("Lol syked, you don't get to choose!")
 	if choice == 1:
-		dab.camel()
+	#	dab.camel()
 		f.write("camel dabbed")
 	elif choice == 2:
-		dab.dino()
+	#	dab.dino()
 		f.write("dino dab!")
 	elif choice == 3:
-		dab.pizza()
+	#	dab.pizza()
 		f.write("pizzaaaa")
 	else:
-		dab.dab()
+	#	dab.dab()
 		f.write("master dab!")
 	time.sleep(5)
 	f.write(time.asctime( time.localtime(time.time()) ))

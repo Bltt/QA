@@ -8,7 +8,7 @@ checkuserisjenkins:
 ifeq (${userna},jenkins)
         @echo "you are the right user!"
 else
-        ${error "You arent jenkins ya cheeky shit!"}
+	${error "You arent jenkins ya cheeky shit!"}
 endif
 
 add: 

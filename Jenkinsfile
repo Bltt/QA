@@ -1,5 +1,5 @@
 node {
-	try {
+
    
 		stages {
         		stage('Build') {
@@ -7,5 +7,5 @@ node {
             		        sh "make runonserver"
             }
         }
-    }
+
 }

@@ -3,19 +3,13 @@
 import dab
 import random
 import time
-import SimpleHTTPServer
-import SocketServer
 
-PORT = 9090
-Handler = SimpleHTTPServer.SimpleHTTPRequestHandler
-httpd = SocketServer.TCPServer(("", PORT), Handler)
 print("")
 print("------ PYTHON PROGRAM ------")
 print("")
 choice = random.randint(1,4)
 dab.dab()
-bants = 0
-while bants < 5:
+while True:
 	f=open("/home/jenkins/python_app_logfile.txt", "a+")
 	print("Press enter to continue and exit")
 	print("")
@@ -36,6 +30,3 @@ while bants < 5:
 	f.write(time.asctime( time.localtime(time.time()) ))
 	choice = random.randint(1,4)
 	f.close()
-	bants += 1
-
-httpd.serve_forever()

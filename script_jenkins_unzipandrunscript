@@ -1,8 +1,0 @@
-scp /home/jenkins/deploy_script.zip jenkins@10.0.10.11:/home/jenkins/
-ssh jenkins@10.0.10.11 << __EOF__
-   mkdir /home/jenkins/temp_scripts
-   unzip /home/jenkins/deploy_script.zip -d /home/jenkins/temp_scripts/
-   for i in /home/jenkins/temp_scripts/* ; do bash \$i ; done
-   rm -rf /home/jenkins/temp_scripts/
-   rm /home/jenkins/deploy_script.zip
-__EOF__

@@ -4,7 +4,7 @@ makedistro:
 	@zip cool_program -r . -x Makefile move_distro_script
 
 movedistrotoserver: makedistro
-	@scp /home/jenkins/big_test/cool_program.zip jenkins@10.0.10.11:/home/jenkins/
+	@scp /home/jenkins/git/QA/bigtest/cool_program.zip jenkins@10.0.10.11:/home/jenkins/
 
 unziponserver : movedistrotoserver
 	@ssh jenkins@10.0.10.11 'mkdir /home/jenkins/cool_python_program ; \

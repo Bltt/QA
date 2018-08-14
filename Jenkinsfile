@@ -1,11 +1,21 @@
-node {
+pipeline {
+    agent any
 
-   
-		stages {
-        		stage('Build') {
-				sh "echo 'building..'"
-            		        sh "make runonserver"
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
             }
         }
-
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
 }

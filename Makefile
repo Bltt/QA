@@ -1,10 +1,10 @@
-.PHONY = makedistro
+.PHONY = makedistro movedistrotoserver
 
 makedistro:
-	@zip /home/jenkins/git/QA/bigtest/cool_program -r .
+	@zip /home/jenkins/git/QA/cool_program -r Makefile dab.py main.py 
 
 movedistrotoserver: makedistro 
-	@scp /home/jenkins/git/QA/bigtest/cool_program.zip jenkins@10.0.10.11:/home/jenkins/
+	@scp /home/jenkins/git/QA/cool_program.zip jenkins@10.0.10.11:/home/jenkins/
 
 unziponserver : movedistrotoserver
 	@ssh jenkins@10.0.10.11 'mkdir /home/jenkins/cool_python_program ; \
@@ -21,3 +21,14 @@ removefromserver:
 
 runpython:
 	python main.py
+
+
+add:
+	@git add .
+
+commit: add
+	@git commit -m "addin things"
+
+push: commit
+	@git push origin master
+

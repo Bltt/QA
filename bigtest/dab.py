@@ -56,4 +56,14 @@ def dab():
 
 
 
+def pizza():
+	print(r"""
 
+// ""--.._
+||  (_)  _ "-._
+||    _ (_)    '-.
+||   (_)   __..-'
+ \\__..--""
+
+spicy meat pizza yeeeeeeeeeeeeeeee
+		""")

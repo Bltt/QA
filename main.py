@@ -5,9 +5,9 @@ print("")
 print("------ PYTHON PROGRAM ------")
 print("")
 choice = random.randint(1,4)
-f=open("logfile.txt", "a+")
 dab.dab()
 while True:
+	f=open("logfile.txt", "a+")
 	print("Press enter to continue and exit")
 	print("")
 	print("Lol syked, you don't get to choose!")
@@ -26,4 +26,5 @@ while True:
 	time.sleep(5)
 	f.write(time.asctime( time.localtime(time.time()) ))
 	choice = random.randint(1,4)
+	f.close()
 

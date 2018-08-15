@@ -1,0 +1,9 @@
+[Unit]
+Description= marks cool python app for dabtastic animals
+
+[Service]
+User=jenkins
+ExecStart=/opt/test-service/app.py
+
+[Install]
+WantedBy=multi-user.target

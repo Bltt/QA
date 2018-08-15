@@ -1,0 +1,34 @@
+1. What is the difference between YUM and APT?
+	yum is for centos/redhat, apt is for ubuntu/debian
+2. What is a .deb file, and what does it contain?
+	Essentially a compressed folder with all the files relating to the install
+3. How would you install a .deb file?
+	dpkg -i package.deb
+4. What is a .rpm file?
+	the redhat version of a .deb file
+5. How do you update your local repo list with YUM and APT?
+	sudo yum update
+6. How would you install multiple packages without having to confirm the selection?
+-y and whitespace between packagenames
+7. How do you uninstall a package in YUM and APT?
+ uninstall <name>
+8. Where do package managers place the binaries?
+	/usr/local/bin/
+9. How do you install a specific version of a package?
+specify the full name of the package (have to search for it first)
+10. How do you upgrade a single package / all packages?
+	update <name> or leave blank for all
+11. Get the latest info on a package of your choice
+	search <packagename>, info <packagename>
+12. Who maintains it?
+	znc.in
+13. How large is it?
+	2.0M
+14. What does it depend on?
+	liicu, systemd, rtld, libstdc++, shadow-utils, openssl...
+15. What does it suggest you install with it?
+	libicu for deps
+16. What does it recommend you install with it?
+	nothing
+17. Where is the package installed to?
+	/usr/local/bin

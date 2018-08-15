@@ -1,49 +1,37 @@
-.PHONY = makedistro movedistrotoserver
+.PHONY = install uninstall
 
-NAME = python-application-server
+NAME = python-systemd-http-server
 INSTALL_LOCATION = /opt/${NAME}
 SERVICE_SCRIPT = /etc/systemd/system/${NAME}.service
 
-installservice:
-	@cp ${NAME}.service ${SERVICE_SCRIPT}
-	@mkdir -p ${INSTALL_LOCATION}
-	@cp app.py ${INSTALL_LOCATION} 
-	@cp dab.py ${INSTALL_LOCATION}
-	@systemctl daemon-reload
+install:
+	@sudo cp ${NAME}.service ${SERVICE_SCRIPT}
+	@sudo mkdir -p ${INSTALL_LOCATION}
+	@sudo cp app.py ${INSTALL_LOCATION}
+	@sudo cp -r public ${INSTALL_LOCATION}
+	@sudo systemctl daemon-reload
 
-uninstallservice:
+uninstall:
 	@rm -rf ${INSTALL_LOCATION}
 	@rm -rf ${SERVICE_SCRIPT}
 
 makedistro:
-	@zip /home/jenkins/git/QA/cool_program -r Makefile dab.py main.py 
+	@zip /home/jenkins/git/QA/cool_program -r Makefile app.py public/ python-systemd-http-server.service 
 
-movedistrotoserver: makedistro 
+movedistrotoserver: makedistro
 	@scp /home/jenkins/git/QA/cool_program.zip jenkins@10.0.10.11:/home/jenkins/
 
 unziponserver : movedistrotoserver
 	@ssh jenkins@10.0.10.11 'mkdir /home/jenkins/cool_python_program ; \
         unzip -o /home/jenkins/cool_program.zip -d /home/jenkins/cool_python_program/'
 
-runonserver: unziponserver
+installonserver: unziponserver
 	@ssh jenkins@10.0.10.11 'cd /home/jenkins/cool_python_program/ ; \
-	make runpython'
+        make install ; \
+	sudo systemctl start ${NAME}.service'
 
 removefromserver:
 	@ssh jenkins@10.0.10.11 'rm -r /home/jenkins/cool_python_program/ ; \
-	rm /home/jenkins/cool_program.zip'
+        rm /home/jenkins/cool_program.zip'
 	rm cool_program.zip
-
-runpython:
-	python main.py
-
-
-add:
-	@git add .
-
-commit: add
-	@git commit -m "addin things"
-
-push: commit
-	@git push origin master
-
+	

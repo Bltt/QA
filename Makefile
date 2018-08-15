@@ -29,9 +29,11 @@ installonserver: unziponserver
 	@ssh jenkins@10.0.10.11 'cd /home/jenkins/cool_python_program/ ; \
         make install ; \
 	sudo systemctl start ${NAME}.service'
+	ssh jenkins@10.0.10.11 sudo systemctl status ${NAME}.service
 
 removefromserver:
 	@ssh jenkins@10.0.10.11 'rm -r /home/jenkins/cool_python_program/ ; \
-        rm /home/jenkins/cool_program.zip'
+        sudo systemctl stop ${NAME}.service ; \
+	rm /home/jenkins/cool_program.zip'
 	rm cool_program.zip
 	

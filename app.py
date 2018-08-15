@@ -6,7 +6,7 @@ import time
 f=open("/home/jenkins/simple_server_log.txt", "a+")
 f.write("Program start - ")
 f.write(time.asctime( time.localtime(time.time())))
-
+f.close()
 
 PORT = 9000
 
